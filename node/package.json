@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "yagasaki": "yarn upgrade-interactive --latest",
-    "dev": "tsx watch src/http/server.ts"
+    "dev": "tsx watch src/http/server.ts",
+    "migration": "npx prisma migrate dev"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "@fastify/cookie": "^9.3.1",
     "@prisma/client": "^5.9.1",
     "fastify": "^4.26.0",
     "zod": "^3.22.4"
