@@ -10,7 +10,7 @@ Three days of course will be grows to five. No thanks.
 I only want to know more about the practice and keep me
 updated. Sorry for use this trash.
 
-Techs: React, Vite, Tailwind, Radix, Date-fns, Lucide-React, Sonner
+Techs: React, Vite, Tailwind, Radix, Date-fns, Lucide-React, Sonner, SpeechRecognition
 
 ## Nodejs Schema
 
