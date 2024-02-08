@@ -7,12 +7,12 @@ interface NewNoteCardProps {
     onNoteCreated: (content: string) => void
 }
 
-let speechRecognition: SpeechRecognition | null = null
+// let speechRecognition: SpeechRecognition | null = null
 
 const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
     const [shouldShowOnBoarding, setShouldShowOnBoarding] = useState(true)
     const [content, setContent] = useState('')
-    const [isRecording, setIsRecording] = useState(false)
+    // const [isRecording, setIsRecording] = useState(false)
 
     function handleStartEditor() {
         setShouldShowOnBoarding(false)
@@ -39,56 +39,56 @@ const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
         toast.success('Nota criada com sucesso!')
     }
 
-    function handleStartRecording() {
-        const isSpeechRecognitionAPIAvailable = 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window
+    // function handleStartRecording() {
+    //     const isSpeechRecognitionAPIAvailable = 'SpeechRecognition' in window || 'webkitSpeechRecognition' in window
 
-        if (!isSpeechRecognitionAPIAvailable) {
-            alert('Infelizmente, seu navegador não suporta a API de gravação')
-            return
-        }
+    //     if (!isSpeechRecognitionAPIAvailable) {
+    //         alert('Infelizmente, seu navegador não suporta a API de gravação')
+    //         return
+    //     }
 
-        setIsRecording(true)
-        setShouldShowOnBoarding(false)
+    //     setIsRecording(true)
+    //     setShouldShowOnBoarding(false)
 
-        const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition
+    //     const SpeechRecognitionAPI = window.SpeechRecognition || window.webkitSpeechRecognition
 
-        speechRecognition = new SpeechRecognitionAPI()
+    //     speechRecognition = new SpeechRecognitionAPI()
 
-        // Language of Speech
-        speechRecognition.lang = 'pt-BR'
+    //     // Language of Speech
+    //     speechRecognition.lang = 'pt-BR'
 
-        // Doesnt stop to recording until I say it.
-        speechRecognition.continuous = true
+    //     // Doesnt stop to recording until I say it.
+    //     speechRecognition.continuous = true
 
-        // If will suggest to me a Alternative, just return 1.
-        speechRecognition.maxAlternatives = 1
+    //     // If will suggest to me a Alternative, just return 1.
+    //     speechRecognition.maxAlternatives = 1
 
-        // Show results to me when I speech.
-        speechRecognition.interimResults = true
+    //     // Show results to me when I speech.
+    //     speechRecognition.interimResults = true
 
-        // Get the results of speech
-        speechRecognition.onresult = (event) => {
-            const transcription = Array.from(event.results).reduce((text, result) => {
-                return text.concat(result[0].transcript)
-            }, '')
+    //     // Get the results of speech
+    //     speechRecognition.onresult = (event) => {
+    //         const transcription = Array.from(event.results).reduce((text, result) => {
+    //             return text.concat(result[0].transcript)
+    //         }, '')
 
-            setContent(transcription)
-        }
+    //         setContent(transcription)
+    //     }
 
-        speechRecognition.onerror = (event) => {
-            console.error(event)
-        }
+    //     speechRecognition.onerror = (event) => {
+    //         console.error(event)
+    //     }
 
-        speechRecognition.start()
-    }
+    //     speechRecognition.start()
+    // }
 
-    function handleStopRecording() {
-        setIsRecording(false)
+    // function handleStopRecording() {
+    //     setIsRecording(false)
 
-        if (speechRecognition !== null) {
-            speechRecognition.stop()
-        }
-    }
+    //     if (speechRecognition !== null) {
+    //         speechRecognition.stop()
+    //     }
+    // }
 
     return (
         <Dialog.Root>
@@ -109,11 +109,12 @@ const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
                             <span className="text-sm font-medium text-slate-300">Adicionar nota</span>
 
                             {
-                                shouldShowOnBoarding ? (<p className="text-sm leading-6 text-slate-400">Comece <button type="button" className="font-medium text-lime-400 hover:underline" onClick={handleStartRecording}>gravando uma nota em áudio</button> ou se preferir <button type="button" className="font-medium text-lime-400 hover:underline" onClick={handleStartEditor}>utilize apenas texto</button>.</p>) : (<textarea autoFocus className="text-sm leading-6 text-slate-400 bg-transparent resize-none flex-1 outline-none" onChange={handleContentChange} value={content} />)
+                                shouldShowOnBoarding ? (<p className="text-sm leading-6 text-slate-400">Comece
+                                    {/* <button type="button" className="font-medium text-lime-400 hover:underline" onClick={handleStartRecording}>gravando uma nota em áudio</button> ou se preferir*/} <button type="button" className="font-medium text-lime-400 hover:underline" onClick={handleStartEditor}>uma nova nota</button>.</p>) : (<textarea autoFocus className="text-sm leading-6 text-slate-400 bg-transparent resize-none flex-1 outline-none" onChange={handleContentChange} value={content} />)
                             }
                         </div>
 
-                        {
+                        {/* {
                             isRecording ? (
                                 <button type="button" onClick={handleStopRecording} className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:text-slate-100 py-4 text-center text-sm font-medium text-slate-300 outline-none group">
                                     <div className="size-3 bg-red-500 rounded-full animate-pulse" />
@@ -124,7 +125,7 @@ const NewNoteCard = ({ onNoteCreated }: NewNoteCardProps) => {
                                     <span>Salvar nota</span>
                                 </button>
                             )
-                        }
+                        } */}
 
                         <button type="button" onClick={handleSaveNote} className="w-full bg-lime-400 py-4 text-center text-sm text-lime-950 outline-none font-medium hover:bg-lime-500">
                             <span>Salvar nota</span>
